@@ -2,12 +2,13 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { Task } from '../../models/task.class';
 import { Levels } from "../../models/levels.enum";
+import '../../styles/task_list.scss'
 
 //style
 import '../../styles/task.scss'
 
 
-const TaskComponent = ({ task }) => {
+const TaskComponent = ({ task, complete, remove }) => {
 
      useEffect(() => {
           console.log("Created task");
@@ -50,9 +51,9 @@ const TaskComponent = ({ task }) => {
      /* Function that returns an icon depending on the completion state of the task */
      function taskCompletedIcon(){
           if(task.completed){
-               return (<i className='bi-toggle-on ps-2' style={{color:'green', fontSize:'1.2rem'}}></i>)
+               return (<i onClick={()=>complete(task)} className='bi-toggle-on task-icon' style={{color:'green', fontSize:'1.2rem'}}></i>)
           }else{
-               return(<i className='bi-toggle-off ps-2' style={{color:'grey',fontSize:'1.2rem'}}></i>)
+               return(<i onClick={()=>complete(task)} className='bi-toggle-off task-icon' style={{color:'grey',fontSize:'1.2rem'}}></i>)
           }
      }
 
@@ -71,30 +72,17 @@ const TaskComponent = ({ task }) => {
                </td>
                <td className='align-center'>
                     {taskCompletedIcon()}
-                    <i className='bi-trash ps-2' style={{color:'grey',fontSize:'1.2rem'}}></i>
+                    <i onClick={()=>remove(task)} className='bi-trash ms-3 task-icon' style={{color:'grey',fontSize:'1.2rem'}}></i>
                </td>
           </tr>
-
-        /* <div>
-           <h2 className='task-name'>
-                Name: { task.name }
-           </h2>
-           <h3>
-                Description: { task.description }
-           </h3>
-           <h4>
-                Level: { task.level }
-           </h4>
-           <h5>
-                This task is: { task.completed ? "Completed": "Pending" }
-           </h5>  
-        </div> */
     );
 };
 
 
 TaskComponent.propTypes = {
-    task: PropTypes.instanceOf(Task),
+    task: PropTypes.instanceOf(Task).isRequired,
+    complete: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
 };
 
 

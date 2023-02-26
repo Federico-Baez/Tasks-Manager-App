@@ -18,13 +18,30 @@ const TaskListComponent = () => {
         console.log("Task state have been modified");
         setLoading(false);
         return () => {
-            console.log("TaskList cpmponent is going to unmount");
+            console.log("TaskList component is going to unmount");
         };
     }, [tasks]);
 
-    /* const changeCompleted = (id) =>{
-        console.log("TODO: cambiar de estado una tarea")
-    } */
+    function completeTask(task){
+        const index = tasks.indexOf(task);
+        const tempTasks = [...tasks];
+        tempTasks[index].completed = !tempTasks[index].completed;
+        /* We update the state of the component with the new list of tasks and it will update the iteration of the tasks in order to show the tasks updated */
+        setTasks(tempTasks);
+    }
+
+    function deleteTask(task){
+        const index = tasks.indexOf(task);
+        const tempTasks = [...tasks];
+        tempTasks.splice(index, 1);
+        setTasks(tempTasks);
+    }
+
+    function addTask(task){
+        const tempTasks = [...tasks];
+        tempTasks.push(task);
+        setTasks(tempTasks);
+    }
 
     return (
         <div>
@@ -39,21 +56,27 @@ const TaskListComponent = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th scope='col'>Title</th>
-                                    <th scope='col'>Description</th>
-                                    <th scope='col'>Priority</th>
-                                    <th scope='col'>Actions</th>
+                                    <th className='table_head_element' scope='col'>Title</th>
+                                    <th className='table_head_element' scope='col'>Description</th>
+                                    <th className='table_head_element' scope='col'>Priority</th>
+                                    <th className='table_head_element' scope='col'>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {tasks.map((taskIt, index)=>{
-                                    return(<TaskComponent key={index} task={taskIt}></TaskComponent>)
-                                })}
+                                    return(<TaskComponent 
+                                            key={index} 
+                                            task={taskIt} 
+                                            complete={completeTask}
+                                            remove={deleteTask}
+                                            >
+                                            </TaskComponent>)
+                                    })}
                             </tbody>
                         </table>
                     </div>        
                 </div>
-                <TaskForm></TaskForm>
+                <TaskForm add={addTask}></TaskForm>
             </div>
         </div>
     );
