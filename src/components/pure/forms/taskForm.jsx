@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Levels } from '../../../models/levels.enum';
 import { Task } from '../../../models/task.class';
 
-const TaskForm = ({ add }) => {
+const TaskForm = ({ add, lenght }) => {
 
     const nameRef = useRef('');
     const descriptionRef = useRef('');
     const levelRef = useRef(Levels.Normal);
     
-    function addTask(e){
-        e.preventDefault();
+    function addTask(event){
+        event.preventDefault();
         const newTask = new Task(
             nameRef.current.value, 
             descriptionRef.current.value,
@@ -19,6 +19,19 @@ const TaskForm = ({ add }) => {
         )   
         add(newTask);
     }
+
+/*     const normalStyle = {
+        color: "#0D6EFD",
+        fontWeight: "bold"
+    }
+    const urgentStyle = {
+        color: "#FFC107",
+        fontWeight: "bold"
+    }
+    const blockingStyle = {
+        color: "#DC3545",
+        fontWeight: "bold"
+    } */
 
     return (
         <form onSubmit={addTask} className='d-flex justify-content-center align-items-center mb-4'>
@@ -33,7 +46,9 @@ const TaskForm = ({ add }) => {
                         <option value={Levels.Blocking}>Blocking</option>
                     </select>
                 </div>
-                <button type="submit" className='btn btn-primary w-100 mt-2'>Add Task</button>
+                <button type="submit" className='btn btn-primary w-100 mt-2'>
+                    {lenght > 0 ? "Add Task": "Create Your First Task"}
+                </button>
             </div>
             {/* <button type="submit" className='btn btn-primary flex-fill ms-2 mt-2'>Add Task</button> */}
         </form>
@@ -42,6 +57,7 @@ const TaskForm = ({ add }) => {
 
 TaskForm.propTypes = {
     add: PropTypes.func.isRequired,
+    lenght: PropTypes.number.isRequired,
 };
 
 export default TaskForm;

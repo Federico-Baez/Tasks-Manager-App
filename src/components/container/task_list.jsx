@@ -16,7 +16,9 @@ const TaskListComponent = () => {
     //ciclo de vida del componente
     useEffect(() => {
         console.log("Task state have been modified");
-        setLoading(false);
+        setTimeout(()=>{
+            setLoading(false);
+        }, 2000)
         return () => {
             console.log("TaskList component is going to unmount");
         };
@@ -43,6 +45,49 @@ const TaskListComponent = () => {
         setTasks(tempTasks);
     }
 
+    const Table = () => {
+        return(
+            <table>
+                <thead>
+                    <tr>
+                        <th className='tbl_th' scope='col'>Title</th>
+                        <th className='tbl_th' scope='col'>Description</th>
+                        <th className='tbl_th' scope='col'>Priority</th>
+                        <th className='tbl_th' scope='col'>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {tasks.map((taskIt, index)=>{
+                        return(<TaskComponent 
+                                key={index} 
+                                task={taskIt} 
+                                complete={completeTask}
+                                remove={deleteTask}
+                                >
+                                </TaskComponent>)
+                        })}
+                </tbody>
+            </table>
+    );};
+
+    let taskTable;
+
+    if(tasks.length > 0){
+        taskTable = <Table></Table>;
+    }else{
+        taskTable = (
+        <div>
+            <h4>There are no tasks available</h4>
+            <p>Please, create one</p>
+        </div>)
+    }
+
+    const loadingStyle = {
+        color:"grey",
+        fontSize: "3rem",
+        fontWeigth:"bold"
+    }
+
     return (
         <div>
             <div className='col-12'>
@@ -53,30 +98,11 @@ const TaskListComponent = () => {
                     </div>
                     {/* Card Body (Content) */}
                     <div className='card-body' data-mdv-perfect-scrollbar='true' style={{position:'relative', height:'400px'}}>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th className='table_head_element' scope='col'>Title</th>
-                                    <th className='table_head_element' scope='col'>Description</th>
-                                    <th className='table_head_element' scope='col'>Priority</th>
-                                    <th className='table_head_element' scope='col'>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {tasks.map((taskIt, index)=>{
-                                    return(<TaskComponent 
-                                            key={index} 
-                                            task={taskIt} 
-                                            complete={completeTask}
-                                            remove={deleteTask}
-                                            >
-                                            </TaskComponent>)
-                                    })}
-                            </tbody>
-                        </table>
+                    {/* TODO: add loading spinner */}
+                        {loading ? (<p style={loadingStyle}>Loading tasks...</p>):taskTable}
                     </div>        
                 </div>
-                <TaskForm add={addTask}></TaskForm>
+                <TaskForm add={addTask} lenght={tasks.length}></TaskForm>
             </div>
         </div>
     );
