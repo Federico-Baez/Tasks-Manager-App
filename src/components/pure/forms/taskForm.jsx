@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Levels } from '../../../models/levels.enum';
 import { Task } from '../../../models/task.class';
 
+
 const TaskForm = ({ add, lenght }) => {
 
     const nameRef = useRef('');
@@ -46,11 +47,12 @@ const TaskForm = ({ add, lenght }) => {
                         <option value={Levels.Blocking}>Blocking</option>
                     </select>
                 </div>
+                {/* <button type="submit" className='btn btn-primary flex-fill ms-2 mt-2'>Add Task</button> */}
                 <button type="submit" className='btn btn-primary w-100 mt-2'>
                     {lenght > 0 ? "Add Task": "Create Your First Task"}
                 </button>
             </div>
-            {/* <button type="submit" className='btn btn-primary flex-fill ms-2 mt-2'>Add Task</button> */}
+            
         </form>
     );
 }

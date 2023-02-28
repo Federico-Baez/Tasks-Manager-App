@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Levels } from '../../models/levels.enum';
 import { Task } from '../../models/task.class';
-import TaskForm from '../pure/forms/taskForm';
+import TaskFormik from '../pure/forms/taskFormik';
 import TaskComponent from '../pure/task';
 
 const TaskListComponent = () => {
@@ -18,7 +18,7 @@ const TaskListComponent = () => {
         console.log("Task state have been modified");
         setTimeout(()=>{
             setLoading(false);
-        }, 2000)
+        }, 600)
         return () => {
             console.log("TaskList component is going to unmount");
         };
@@ -102,7 +102,7 @@ const TaskListComponent = () => {
                         {loading ? (<p style={loadingStyle}>Loading tasks...</p>):taskTable}
                     </div>        
                 </div>
-                <TaskForm add={addTask} lenght={tasks.length}></TaskForm>
+                <TaskFormik add={addTask} lenght={tasks.length}></TaskFormik>
             </div>
         </div>
     );

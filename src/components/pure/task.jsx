@@ -67,12 +67,12 @@ const TaskComponent = ({ task, complete, remove }) => {
 
     return (
 
-          <tr className="fw-normal" style={task.completed? taskCompleted : taskPending}>
+          <tr className="fw-normal">
                <th>
-                    <span className='ms-2'>{ task.name }</span>
+                    <span className='ms-2' style={task.completed? taskCompleted : taskPending}>{ task.name }</span>
                </th>
                <td className='align-center'>
-                    <span className='ms-2'>{ task.description }</span>
+                    <span className='ms-2' style={task.completed? taskCompleted : taskPending}>{ task.description }</span>
                </td>
                <td className='align-center'>
                     {/* fuction -> badge segun task priority*/}
