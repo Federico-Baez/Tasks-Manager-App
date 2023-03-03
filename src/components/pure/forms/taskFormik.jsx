@@ -23,8 +23,12 @@ const TaskFormik = ({ add, lenght }) => {
     const taskFormSchema = Yup.object().shape(
         {
             name: Yup.string()
+                    .min(2, "Too short!")
+                    .max(16, "Too long!")
                     .required('Name is a required field'),
             description: Yup.string()
+                    .min(2, "Too short!")
+                    .max(40, "Too long!")
                     .required('Description is a required field'),
         }
     )

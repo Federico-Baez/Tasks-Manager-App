@@ -4,6 +4,9 @@ import { Task } from '../../models/task.class';
 import TaskFormik from '../pure/forms/taskFormik';
 import TaskComponent from '../pure/task';
 
+//style
+import '../../styles/task_list.scss'
+
 const TaskListComponent = () => {
     const defaultTask1 = new Task("Example1", "Description1", true, Levels.Normal);
     const defaultTask2 = new Task("Example2", "Description2", false, Levels.Urgent);
@@ -93,8 +96,8 @@ const TaskListComponent = () => {
             <div className='col-12'>
                 <div className='card' style={{fontSize:'1.2rem'}}>
                     {/* Card Header (Title) */}
-                    <div className='card-header p-3'>
-                        <h1>Your tasks</h1>
+                    <div className='card-header p-3 d-flex justify-content-center'>
+                        <h1 className='title'>Your tasks</h1>
                     </div>
                     {/* Card Body (Content) */}
                     <div className='card-body' data-mdv-perfect-scrollbar='true' style={{position:'relative', height:'400px'}}>
