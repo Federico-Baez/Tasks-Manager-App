@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Task } from '../../models/task.class';
 import { Levels } from "../../models/levels.enum";
@@ -18,42 +18,42 @@ const TaskComponent = ({ task, complete, remove }) => {
      }, [task]);
 
      /* Function that returns a badge depending on the level of the task */
-     function taskLevelBadge(){
-          switch(task.level){
+     function taskLevelBadge() {
+          switch (task.level) {
                case Levels.Normal:
-                    return(
-                    <h6 className='mb-0'>
-                         <span className='badge bg-primary'>
-                              {task.level}
-                         </span>
-                    </h6>
+                    return (
+                         <h6 className='mb-0'>
+                              <span className='badge bg-primary'>
+                                   {task.level}
+                              </span>
+                         </h6>
                     )
                case Levels.Urgent:
-                    return(
-                    <h6 className='mb-0'>
-                         <span className='badge bg-warning'>
-                              {task.level}
-                         </span>
-                    </h6>
+                    return (
+                         <h6 className='mb-0'>
+                              <span className='badge bg-warning'>
+                                   {task.level}
+                              </span>
+                         </h6>
                     )
                case Levels.Blocking:
-                    return(
-                    <h6 className='mb-0'>
-                         <span className='badge bg-danger'>
-                              {task.level}
-                         </span>
-                    </h6>
+                    return (
+                         <h6 className='mb-0'>
+                              <span className='badge bg-danger'>
+                                   {task.level}
+                              </span>
+                         </h6>
                     )
                default:
                     break;
           }
      }
      /* Function that returns an icon depending on the completion state of the task */
-     function taskCompletedIcon(){
-          if(task.completed){
-               return (<i onClick={()=>complete(task)} className='bi-toggle-on task-icon' style={{color:'green', fontSize:'1.2rem'}}></i>)
-          }else{
-               return(<i onClick={()=>complete(task)} className='bi-toggle-off task-icon' style={{color:'grey',fontSize:'1.2rem'}}></i>)
+     function taskCompletedIcon() {
+          if (task.completed) {
+               return (<i onClick={() => complete(task)} className='bi-toggle-on task-icon' style={{ color: 'green', fontSize: '1.2rem' }}></i>)
+          } else {
+               return (<i onClick={() => complete(task)} className='bi-toggle-off task-icon' style={{ color: 'grey', fontSize: '1.2rem' }}></i>)
           }
      };
 
@@ -62,17 +62,17 @@ const TaskComponent = ({ task, complete, remove }) => {
           textDecoration: "line-through",
      }
      const taskPending = {
-          fontWeight: "bold"
+          fontWeight: ""
      }
 
-    return (
+     return (
 
           <tr className="fw-normal">
                <th>
-                    <span className='ms-2' style={task.completed? taskCompleted : taskPending}>{ task.name }</span>
+                    <span className='ms-2' style={task.completed ? taskCompleted : taskPending}>{task.name}</span>
                </th>
                <td className='align-center'>
-                    <span className='ms-2' style={task.completed? taskCompleted : taskPending}>{ task.description }</span>
+                    <span className='ms-2' style={task.completed ? taskCompleted : taskPending}>{task.description}</span>
                </td>
                <td className='align-center'>
                     {/* fuction -> badge segun task priority*/}
@@ -80,17 +80,17 @@ const TaskComponent = ({ task, complete, remove }) => {
                </td>
                <td className='align-center'>
                     {taskCompletedIcon()}
-                    <i onClick={()=>remove(task)} className='bi-trash ms-3 task-icon' style={{color:'grey',fontSize:'1.2rem'}}></i>
+                    <i onClick={() => remove(task)} className='bi-trash ms-3 task-icon' style={{ color: 'grey', fontSize: '1.2rem' }}></i>
                </td>
           </tr>
-    );
+     );
 };
 
 
 TaskComponent.propTypes = {
-    task: PropTypes.instanceOf(Task).isRequired,
-    complete: PropTypes.func.isRequired,
-    remove: PropTypes.func.isRequired,
+     task: PropTypes.instanceOf(Task).isRequired,
+     complete: PropTypes.func.isRequired,
+     remove: PropTypes.func.isRequired,
 };
 
 

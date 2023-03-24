@@ -1,33 +1,32 @@
-import React, {useState, useEffect} from 'react';
-import { Levels } from '../../models/levels.enum';
-import { Task } from '../../models/task.class';
+import React, { useState, useEffect } from 'react';
 import TaskFormik from '../pure/forms/taskFormik';
 import TaskComponent from '../pure/task';
 
 //style
 import '../../styles/task_list.scss'
+import { readLocalStorage, setLocalStorage } from '../../localStorage';
 
 const TaskListComponent = () => {
-    const defaultTask1 = new Task("Example1", "Description1", true, Levels.Normal);
-    const defaultTask2 = new Task("Example2", "Description2", false, Levels.Urgent);
-    const defaultTask3 = new Task("Example3", "Description3", false, Levels.Blocking);
-    
+    /*     const defaultTask1 = new Task("Example1", "Description1", true, Levels.Normal);
+        const defaultTask2 = new Task("Example2", "Description2", false, Levels.Urgent);
+        const defaultTask3 = new Task("Example3", "Description3", false, Levels.Blocking); */
+
     //estado del componente
-    const [tasks, setTasks] = useState([defaultTask1, defaultTask2, defaultTask3]);
+    const [tasks, setTasks] = useState(() => readLocalStorage("todos") || []);
     const [loading, setLoading] = useState(true);
 
     //ciclo de vida del componente
     useEffect(() => {
         console.log("Task state have been modified");
-        setTimeout(()=>{
+        setTimeout(() => {
             setLoading(false);
-        }, 600)
+        }, 800)
         return () => {
             console.log("TaskList component is going to unmount");
         };
     }, [tasks]);
 
-    function completeTask(task){
+    function completeTask(task) {
         const index = tasks.indexOf(task);
         const tempTasks = [...tasks];
         tempTasks[index].completed = !tempTasks[index].completed;
@@ -35,21 +34,23 @@ const TaskListComponent = () => {
         setTasks(tempTasks);
     }
 
-    function deleteTask(task){
+    function deleteTask(task) {
         const index = tasks.indexOf(task);
         const tempTasks = [...tasks];
         tempTasks.splice(index, 1);
         setTasks(tempTasks);
+        setLocalStorage("todos", tempTasks);
     }
 
-    function addTask(task){
+    function addTask(task) {
         const tempTasks = [...tasks];
         tempTasks.push(task);
         setTasks(tempTasks);
+        setLocalStorage("todos", tempTasks);
     }
 
     const Table = () => {
-        return(
+        return (
             <table>
                 <thead>
                     <tr>
@@ -60,50 +61,52 @@ const TaskListComponent = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map((taskIt, index)=>{
-                        return(<TaskComponent 
-                                key={index} 
-                                task={taskIt} 
-                                complete={completeTask}
-                                remove={deleteTask}
-                                >
-                                </TaskComponent>)
-                        })}
+                    {tasks.map((taskIt, index) => {
+                        return (<TaskComponent
+                            key={index}
+                            task={taskIt}
+                            complete={completeTask}
+                            remove={deleteTask}
+                        >
+                        </TaskComponent>)
+                    })}
                 </tbody>
             </table>
-    );};
+        );
+    };
 
     let taskTable;
 
-    if(tasks.length > 0){
+    if (tasks.length > 0) {
         taskTable = <Table></Table>;
-    }else{
+    } else {
         taskTable = (
-        <div>
-            <h4>There are no tasks available</h4>
-            <p>Please, create one</p>
-        </div>)
+            <div>
+                <h4>There are no todos pending</h4>
+                <p>Please, create one</p>
+            </div>)
     }
 
     const loadingStyle = {
-        color:"grey",
-        fontSize: "3rem",
-        fontWeigth:"bold"
+        color: "grey",
+        fontSize: "2rem",
+        fontWeigth: "bold",
+
     }
 
     return (
         <div>
             <div className='col-12'>
-                <div className='card' style={{fontSize:'1.2rem'}}>
+                <div className='card' style={{ fontSize: '1.2rem' }}>
                     {/* Card Header (Title) */}
                     <div className='card-header p-3 d-flex justify-content-center'>
-                        <h1 className='title'>Your tasks</h1>
+                        <h1 className='title'>Your Todos</h1>
                     </div>
                     {/* Card Body (Content) */}
-                    <div className='card-body' data-mdv-perfect-scrollbar='true' style={{position:'relative', height:'400px'}}>
-                    {/* TODO: add loading spinner */}
-                        {loading ? (<p style={loadingStyle}>Loading tasks...</p>):taskTable}
-                    </div>        
+                    <div className='card-body' data-mdv-perfect-scrollbar='true' style={{ position: 'relative', height: '400px' }}>
+                        {/* TODO: add loading spinner */}
+                        {loading ? (<p style={loadingStyle}>Loading todo list...</p>) : taskTable}
+                    </div>
                 </div>
                 <TaskFormik add={addTask} lenght={tasks.length}></TaskFormik>
             </div>

@@ -1,5 +1,10 @@
 .App {
+  margin-top: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-logo {
@@ -28,13 +33,29 @@
   color: #61dafb;
 }
 
+.card-body {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.card {
+  max-height: 460px;
+  min-width: 460px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-
+/* @media (max-width: 740px) {
+  .card {
+    max-height: 460px;
+    min-width: 300px;
+  }
+} */
