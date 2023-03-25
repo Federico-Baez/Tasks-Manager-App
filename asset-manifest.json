@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "//federico-baez.github.io/Todo-List-React/static/css/main.0865acb6.css",
-    "main.js": "//federico-baez.github.io/Todo-List-React/static/js/main.aa558d20.js",
-    "static/js/787.319676fc.chunk.js": "//federico-baez.github.io/Todo-List-React/static/js/787.319676fc.chunk.js",
-    "static/media/bootstrap-icons.woff?": "//federico-baez.github.io/Todo-List-React/static/media/bootstrap-icons.6959d0d983ee318f8880.woff",
-    "static/media/bootstrap-icons.woff2?": "//federico-baez.github.io/Todo-List-React/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
-    "index.html": "//federico-baez.github.io/Todo-List-React/index.html",
-    "main.0865acb6.css.map": "//federico-baez.github.io/Todo-List-React/static/css/main.0865acb6.css.map",
-    "main.aa558d20.js.map": "//federico-baez.github.io/Todo-List-React/static/js/main.aa558d20.js.map",
-    "787.319676fc.chunk.js.map": "//federico-baez.github.io/Todo-List-React/static/js/787.319676fc.chunk.js.map"
+    "main.css": "/Todo-List-React/static/css/main.d4c34f0e.css",
+    "main.js": "/Todo-List-React/static/js/main.19bcb463.js",
+    "static/js/787.319676fc.chunk.js": "/Todo-List-React/static/js/787.319676fc.chunk.js",
+    "static/media/bootstrap-icons.woff?": "/Todo-List-React/static/media/bootstrap-icons.6959d0d983ee318f8880.woff",
+    "static/media/bootstrap-icons.woff2?": "/Todo-List-React/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
+    "index.html": "/Todo-List-React/index.html",
+    "main.d4c34f0e.css.map": "/Todo-List-React/static/css/main.d4c34f0e.css.map",
+    "main.19bcb463.js.map": "/Todo-List-React/static/js/main.19bcb463.js.map",
+    "787.319676fc.chunk.js.map": "/Todo-List-React/static/js/787.319676fc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0865acb6.css",
-    "static/js/main.aa558d20.js"
+    "static/css/main.d4c34f0e.css",
+    "static/js/main.19bcb463.js"
   ]
 }
