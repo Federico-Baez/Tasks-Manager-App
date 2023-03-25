@@ -89,7 +89,7 @@ const TaskComponent = ({ task, complete, remove }) => {
 
 
 TaskComponent.propTypes = {
-     task: PropTypes.instanceOf(Task).isRequired,
+     task: PropTypes.object.isRequired,
      complete: PropTypes.func.isRequired,
      remove: PropTypes.func.isRequired,
 };

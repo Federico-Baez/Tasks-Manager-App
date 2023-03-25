@@ -2,7 +2,7 @@
   "name": "proyecto",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://https://federico-baez.github.io/Todo-List-React/",
+  "homepage": "https://federico-baez.github.io/Todo-List-React/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

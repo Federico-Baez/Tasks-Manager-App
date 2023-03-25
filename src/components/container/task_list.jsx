@@ -87,11 +87,11 @@ const TaskListComponent = () => {
             </div>)
     }
 
+
     const loadingStyle = {
         color: "grey",
-        fontSize: "2rem",
+        fontSize: "1rem",
         fontWeigth: "bold",
-
     }
 
     return (
@@ -104,8 +104,7 @@ const TaskListComponent = () => {
                     </div>
                     {/* Card Body (Content) */}
                     <div className='card-body' data-mdv-perfect-scrollbar='true' style={{ position: 'relative', height: '400px' }}>
-                        {/* TODO: add loading spinner */}
-                        {loading ? (<p style={loadingStyle}>Loading todo list...</p>) : taskTable}
+                        {loading ? (<div style={loadingStyle} className="spinner-border" role="status"><span className="visually-hidden">Loading todos...</span></div>) : taskTable}
                     </div>
                 </div>
                 <TaskFormik add={addTask} lenght={tasks.length}></TaskFormik>
