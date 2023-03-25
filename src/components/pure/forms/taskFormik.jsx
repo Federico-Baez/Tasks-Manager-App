@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -8,7 +8,16 @@ import { Task } from '../../../models/task.class';
 //style
 import '../../../styles/taskFormik.scss';
 
-const TaskFormik = ({ add, lenght }) => {
+const TaskFormik = ({ add, lenght, darkMode }) => {
+
+    useEffect(() => {
+        // get all error message elements
+        const errorMessages = document.getElementsByClassName("error-message");
+        // update their style based on the current darkMode value
+        for (let i = 0; i < errorMessages.length; i++) {
+            errorMessages[i].style.color = darkMode ? "beige" : "black";
+        }
+    }, [darkMode]);
 
     const initialTaskCredential = {
         name: '',
@@ -45,16 +54,16 @@ const TaskFormik = ({ add, lenght }) => {
         >
 
             {({ errors, touched }) => (
-                <Form>
+                <Form className={darkMode ? "dark-mode" : ""}>
                     <Field className='form-control mt-2' id="name" name="name" placeholder="Task name" type="text" />
-                    {/* email errors */}
-                    {errors.name && touched.name && (<ErrorMessage name="name" component="div" />)}
+                    {/* task name errors */}
+                    {errors.name && touched.name && (<ErrorMessage style={darkMode ? { color: "beige" } : { color: "black" }} name="name" component="div" className="error-message" />)}
 
                     <Field className='form-control mt-2' id="description" name="description" placeholder="Task description" type="text" />
-                    {/* password errors */}
-                    {errors.description && touched.description && (<ErrorMessage name="description" component="div" />)}
+                    {/* description errors */}
+                    {errors.description && touched.description && (<ErrorMessage style={darkMode ? { color: "beige" } : { color: "black" }} name="description" component="div" className="error-message" />)}
 
-                    <div className='d-flex mt-2'>
+                    <div className='selector d-flex mt-2'>
                         <label htmlFor="level" className='sr-only align-self-center me-3'>Priority</label>
                         <Field className='form-select' as="select" name="level" id="level" defaultValue={Levels.Normal}>
                             <option value={Levels.Normal}>Normal</option>
@@ -74,6 +83,7 @@ const TaskFormik = ({ add, lenght }) => {
 TaskFormik.propTypes = {
     add: PropTypes.func.isRequired,
     lenght: PropTypes.number.isRequired,
+    darkMode: PropTypes.bool.isRequired,
 };
 
 export default TaskFormik;

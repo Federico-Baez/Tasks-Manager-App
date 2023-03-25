@@ -9,7 +9,7 @@ import '../../styles/task_list.scss'
 import '../../styles/task.scss'
 
 
-const TaskComponent = ({ task, complete, remove }) => {
+const TaskComponent = ({ task, complete, remove, darkMode }) => {
 
      useEffect(() => {
           console.log("Created task");
@@ -51,11 +51,24 @@ const TaskComponent = ({ task, complete, remove }) => {
      }
      /* Function that returns an icon depending on the completion state of the task */
      function taskCompletedIcon() {
-          if (task.completed) {
-               return (<i onClick={() => complete(task)} className='bi-toggle-on task-icon' style={{ color: 'green', fontSize: '1.2rem' }}></i>)
+          //added the logic for dark mode style change
+          if (darkMode === true) {
+               if (task.completed) {
+                    return (<i onClick={() => complete(task)} className='bi-toggle-on task-icon' style={{ color: '#20902f', fontSize: '1.2rem' }}></i>
+                    )
+               } else {
+                    return (<i onClick={() => complete(task)} className='bi-toggle-off task-icon' style={{ color: '#d2d2d2', fontSize: '1.2rem' }}></i>)
+               }
           } else {
-               return (<i onClick={() => complete(task)} className='bi-toggle-off task-icon' style={{ color: 'grey', fontSize: '1.2rem' }}></i>)
+               if (task.completed) {
+                    return (<i onClick={() => complete(task)} className='bi-toggle-on task-icon' style={{ color: 'green', fontSize: '1.2rem' }}></i>
+                    )
+               } else {
+                    return (<i onClick={() => complete(task)} className='bi-toggle-off task-icon' style={{ color: 'grey', fontSize: '1.2rem' }}></i>)
+               }
           }
+
+
      };
 
      const taskCompleted = {
@@ -81,7 +94,7 @@ const TaskComponent = ({ task, complete, remove }) => {
                </td>
                <td className='align-center'>
                     {taskCompletedIcon()}
-                    <i onClick={() => remove(task)} className='bi-trash ms-3 task-icon' style={{ color: 'grey', fontSize: '1.2rem' }}></i>
+                    <i onClick={() => remove(task)} className='bi-trash ms-3 task-icon' style={darkMode ? { color: '#d2d2d2', fontSize: '1.2rem' } : { color: 'grey', fontSize: '1.2rem' }}></i>
                </td>
           </tr>
      );

@@ -4,4 +4,15 @@ Form {
 
 .form-control {
     font-size: .85rem;
+    transition: border 0s;
+}
+
+.form-select {
+    font-size: .85rem;
+    transition: border 0s;
+}
+
+
+.btn {
+    font-size: .85rem;
 }

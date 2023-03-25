@@ -1,0 +1,39 @@
+:root {
+    --background-color: ;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+.dark-mode {
+    .form-control {
+        background-color: #212529;
+        color: beige;
+        border-color: #1B1E22;
+        transition: border 0s;
+
+        &::placeholder {
+            color: #a1a4a6;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(180, 182, 183, 0.15);
+        }
+    }
+
+    label {
+        color: beige;
+    }
+
+    .form-select {
+        background-color: #212529;
+        color: beige;
+        border-color: #1B1E22;
+        transition: border 0s;
+
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(180, 182, 183, 0.15);
+        }
+    }
+}
