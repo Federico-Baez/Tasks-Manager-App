@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import TaskFormik from '../pure/forms/taskFormik';
 import TaskComponent from '../pure/task';
+import { readLocalStorage, setLocalStorage } from '../../localStorage';
 
 //style
-import '../../styles/task_list.scss'
-import { readLocalStorage, setLocalStorage } from '../../localStorage';
+import '../../styles/task_list.scss';
 
 const TaskListComponent = () => {
     /*     const defaultTask1 = new Task("Example1", "Description1", true, Levels.Normal);
@@ -97,10 +97,10 @@ const TaskListComponent = () => {
     return (
         <div>
             <div className='col-12'>
-                <div className='card' style={{ fontSize: '1.2rem' }}>
+                <div className='card' style={{ fontSize: '.95rem' }}>
                     {/* Card Header (Title) */}
                     <div className='card-header p-3 d-flex justify-content-center'>
-                        <h1 className='title'>Your Todos</h1>
+                        <h1 className='title' style={{ fontSize: '2.1rem' }}>Your Todos</h1>
                     </div>
                     {/* Card Body (Content) */}
                     <div className='card-body' data-mdv-perfect-scrollbar='true' style={{ position: 'relative', height: '400px' }}>

@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Task } from '../../models/task.class';
 import { Levels } from "../../models/levels.enum";
-import '../../styles/task_list.scss'
 
 //style
+import '../../styles/task_list.scss'
+
 import '../../styles/task.scss'
 
 

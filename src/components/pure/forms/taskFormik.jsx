@@ -5,11 +5,8 @@ import * as Yup from 'yup';
 import { Levels } from '../../../models/levels.enum';
 import { Task } from '../../../models/task.class';
 
-/* 
---Partiendo del proyecto final, deberéis utilizar crear un formulario con el que crear tareas.  Para hacer esto usaréis:
-    -Formik para el formulario.
-    -Yup para las validaciones.
-*/
+//style
+import '../../../styles/taskFormik.scss';
 
 const TaskFormik = ({ add, lenght }) => {
 

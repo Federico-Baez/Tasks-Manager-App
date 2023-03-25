@@ -36,11 +36,14 @@
 .card-body {
   overflow: hidden;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card {
-  max-height: 460px;
-  min-width: 460px;
+  max-height: 480px;
+  min-width: 400px;
 }
 
 @keyframes App-logo-spin {

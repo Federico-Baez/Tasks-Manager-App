@@ -1,11 +1,15 @@
-.task-icon:hover{
+.task-icon:hover {
     cursor: pointer;
 }
 
-.task-completed{
+.task-completed {
     text-decoration: line-through;
 }
 
-.task-pending{
+.task-pending {
     font-weight: bold;
+}
+
+.badge {
+    width: 4rem;
 }
