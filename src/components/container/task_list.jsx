@@ -16,7 +16,7 @@ const TaskListComponent = () => {
     //component states
     const [tasks, setTasks] = useState(() => readLocalStorage("todos") || []);
     const [loading, setLoading] = useState(true);
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
     //life cycle of the component
     useEffect(() => {
